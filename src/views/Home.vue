@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <el-button type='primary'>el-button</el-button>
+    <el-button type='primary' @click="getData">el-button</el-button>
     <p class="test">再测试一下</p>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -14,6 +14,13 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  methods:{
+    getData(){
+      this.$api.testAddress().then(res=>{
+        console.log(res.data);
+      })
+    }
   }
 }
 </script>
