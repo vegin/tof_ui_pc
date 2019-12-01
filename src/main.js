@@ -5,6 +5,7 @@ import store from './store'
 import api from './request/api';
 import './plugins/element.js'
 import './assets/css/element-variables.scss'
+import './assets/css/common.scss'
 
 Vue.prototype.$api = api;
 Vue.config.productionTip = false
