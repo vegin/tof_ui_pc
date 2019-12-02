@@ -12,6 +12,9 @@ $--color-danger: #F56C6C !default;
 /// color|1|Functional Color|1
 $--color-info: #909399 !default;
 
+//自定义颜色
+$search-color:#3a4172;
+
 /*按需引入用到的组件的scss文件和基础scss文件*/
 @import "~element-ui/packages/theme-chalk/src/base.scss";
 @import "~element-ui/packages/theme-chalk/src/rate.scss";
