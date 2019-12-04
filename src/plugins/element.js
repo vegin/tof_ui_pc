@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button,Container,Header,Footer,Main,Badge,Input,Row,Col} from 'element-ui'
+import { Button,Container,Header,Footer,Main,Badge,Input,Row,Col,Breadcrumb,BreadcrumbItem} from 'element-ui'
 
 Vue.use(Button)
     .use(Container)
@@ -10,3 +10,5 @@ Vue.use(Button)
     .use(Input)
     .use(Row)
     .use(Col)
+    .use(Breadcrumb)
+    .use(BreadcrumbItem)
