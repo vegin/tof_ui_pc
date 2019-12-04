@@ -59,10 +59,7 @@ export default {
             font-size:18px;
         }
     }
-    .el-input{
-        & >>> .el-input__inner{
-            border-color:$search-color;
-        }
+    .search{
         .search-btn{
             background:$search-color;
             color:#fff;
@@ -71,4 +68,5 @@ export default {
         }
     }
 }
+.search ::v-deep .el-input__inner{border-color:$search-color;}
 </style>
