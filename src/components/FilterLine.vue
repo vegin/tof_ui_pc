@@ -10,7 +10,7 @@
                 </li>
             </ul>
         </div>
-        <el-button icon="el-icon-plus" size="mini" v-if="isMoreCheck">多选</el-button>
+        <el-button class="more-check-btn" icon="el-icon-plus" size="mini" v-if="isMoreCheck">多选</el-button>
     </div>
 </template>
 
@@ -84,6 +84,28 @@ export default {
                 }
             }
         }
+        &.data-img-list{
+            li{
+                width:120px;
+                height:50px;
+                border:1px solid #eee;
+                margin:-1px -1px 0 0;
+                &.select:after{
+                    content:'';
+                    position:absolute;
+                    left:0;
+                    top:0;
+                    right:0;
+                    bottom:0;
+                    border:1px solid #eb6a6a;
+                }
+                
+            }
+        }
+    }
+    .more-check-btn{
+        padding:3px 8px;
+        height:22px;
     }
 }
 </style>
