@@ -6,6 +6,7 @@ import api from './request/api';
 import './plugins/element.js'
 import './assets/css/element-variables.scss'
 import './assets/css/common.scss'
+import './assets/font/iconfont.css'
 
 Vue.prototype.$api = api;
 Vue.config.productionTip = false

@@ -23,6 +23,7 @@
                         :datalist="item.data"
                         :type="item.type"
                         :isMoreCheck="item.isMoreCheck"
+                        @chooseItem="chooseItem($event,index)"
                     />
                 </div>
             </div>
@@ -56,6 +57,22 @@ export default {
                     isMoreCheck:false
                 }
             ]
+        }
+    },
+    methods:{
+        chooseItem(eq,index){
+            let target = this.filerlist[index].data[eq].checked;
+            let moreCheck = this.filerlist[index].data[eq].isMoreCheck;
+            if(target){
+                this.filerlist[index].data[eq].checked = false;
+            }else{
+                if(!moreCheck){                      
+                    for(let i=0;i<this.filerlist[index].data.length;i++){
+                        this.filerlist[index].data[i].checked = false
+                    }
+                }
+                this.filerlist[index].data[eq].checked = true;
+            }
         }
     }
 }
