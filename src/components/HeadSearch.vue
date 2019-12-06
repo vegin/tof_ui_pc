@@ -61,7 +61,7 @@ export default {
     }
     .search{
         .search-btn{
-            background:$search-color;
+            background:$primary-color;
             color:#fff;
             letter-spacing: 5px;
             padding-left:25px;
@@ -91,12 +91,12 @@ export default {
     .car-btn{
         height:35px;
         padding:9px 20px;
-        border-color:$search-color;
+        border-color:$primary-color;
         i{
             color:#eb6a6a;
         }
     }
 }
-.search ::v-deep .el-input__inner{height:35px;border-color:$search-color;}
-.search ::v-deep .el-input-group__append{background:$search-color;border-color:$search-color;padding:0;height:35px;}
+.search ::v-deep .el-input__inner{height:35px;border-color:$primary-color;}
+.search ::v-deep .el-input-group__append{background:$primary-color;border-color:$primary-color;padding:0;height:35px;}
 </style>

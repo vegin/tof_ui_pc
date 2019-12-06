@@ -29,7 +29,7 @@
                 <p class="switch" v-if="showFilterMore" @click="showMore">{{filterFix?'更多选项（品牌类型、用户优选、大家说等）':'收起更多'}}<i :class="filterFix?'el-icon-arrow-down':'el-icon-arrow-up'"></i></p>
             </div>
             <div class="goods-cont">
-                <div class="mc box">
+                <div class="mt box box-center">
                     <ul class="sort-list box1">
                         <li class="active">综合排序</li>
                         <li>销量</li>
@@ -41,14 +41,39 @@
                         <p>配送至</p>
                         <Area />
                     </div>
-                    <el-checkbox-group v-model="checkList">
+                    <el-checkbox-group v-model="checkList" class="checkbox-group">
                         <el-checkbox label="XX物流"></el-checkbox>
                         <el-checkbox label="货到付款"></el-checkbox>
                         <el-checkbox label="仅显示有货"></el-checkbox>
                     </el-checkbox-group>
+                    <div class="small-pagination box box-center">
+                        <a class="pagination-btn"><i class="el-icon-arrow-left"></i></a>
+                        <p><span class="active">1</span>/<span>12</span></p>
+                        <a class="pagination-btn"><i class="el-icon-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="mc">
+                    <div class="product-list">
+                        <product-item 
+                            v-for="(item,index) in productList" 
+                            :key="index"
+                            :url="item.url"
+                            :name="item.name"
+                            :price="item.price"
+                            :discrib="item.discrib"
+                            :tipsList="item.tipsList"
+                            :follow="item.follow"
+                            @followClick="followClick(index)"
+                        >   
+                        </product-item>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <custom-pagination></custom-pagination>
                 </div>
             </div>
         </div>
+        <Footer />
     </div>
 </template>
 
@@ -56,12 +81,18 @@
 import HeadSearch from '@/components/HeadSearch.vue'
 import FilterLine from '@/components/FilterLine.vue'
 import Area from '@/components/Area.vue'
+import ProductItem from '@/components/ProductItem.vue'
+import CustomPagination from '@/components/CustomPagination.vue'
+import Footer from '@/components/Footer.vue'
 export default {
     name:'productList',
     components:{
         HeadSearch,
         FilterLine,
-        Area
+        Area,
+        ProductItem,
+        CustomPagination,
+        Footer
     },
     data:function(){
         return{
@@ -132,7 +163,25 @@ export default {
                     isMoreCheck:false
                 }
             ],
-            checkList:['仅显示有货']
+            checkList:['仅显示有货'],
+            productList:[
+                {
+                    url:require('@/assets/images/img.jpg'),
+                    name:'乐视（Letv）超级电视 Y43 43英寸 1GB电视',
+                    price:1049.00,
+                    discrib:'Letv超级电视...',
+                    follow:false,
+                    tipsList:['39-45英寸','全高清（1920*1080）']
+                },
+                {
+                    url:require('@/assets/images/img.jpg'),
+                    name:'乐视（Letv）超级电视 Y43 43英寸 1GB电视',
+                    price:1049.00,
+                    discrib:'Letv超级电视...',
+                    follow:false,
+                    tipsList:['39-45英寸','全高清（1920*1080）']
+                }
+            ]
         }
     },
     methods:{
@@ -154,6 +203,9 @@ export default {
         },
         showMore(){
             this.filterFix = !this.filterFix;
+        },
+        followClick(index){
+            this.productList[index].follow = !this.productList[index].follow;
         }
     },
     mounted(){
@@ -168,8 +220,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/element-variables.scss';
 .first-breadcrumb ::v-deep .el-breadcrumb__inner{font-size:18px;}
 .el-breadcrumb__item{line-height:25px;}
+.container{
+    padding:10px 0;
+}
 .filter-cont{
     margin-top:10px;
     .mt{
@@ -199,4 +255,68 @@ export default {
         cursor:pointer;
     }
 }
+.goods-cont{
+    .mt{
+        background:#f8f8fa;
+        padding:0 10px;
+        .sort-list{
+            li{
+                display:inline-block;
+                vertical-align:middle;
+                height:36px;
+                line-height:36px;
+                border-bottom:3px solid transparent;
+                font-size:12px;
+                margin-right:30px;
+                cursor:pointer;
+                &.active{
+                    color:#3a4172;
+                    font-weight:700;
+                    border-bottom-color:#3a4172;
+                }
+            }
+        }
+        .send{
+            p{
+                font-size:12px;
+                margin-right:5px;
+                display:inline-block;
+                vertical-align:middle;
+            }
+        }
+        .checkbox-group{
+            margin:0 15px;
+            .el-checkbox{
+                margin-right:15px;
+            }
+        }
+        .small-pagination{
+            font-size:12px;
+            .pagination-btn,span{
+                padding:0 3px;
+            }
+            .active{
+                color:#f30213;
+            }
+        }
+    }
+    .mc{
+        padding:10px 0;
+        .product-list{
+            font-size:0;
+            .product-item{
+                display:inline-block;
+                vertical-align:top;
+                width:20%;
+            }
+        }
+    }
+    .pagination{
+        text-align:right;
+    }
+}
+.send ::v-deep .el-input__inner{height:25px;font-size:12px;}
+.checkbox-group ::v-deep .el-checkbox__label{font-size:12px;}
+.checkbox-group ::v-deep .el-checkbox.is-checked .el-checkbox__label{color:$primary-color;}
+.checkbox-group ::v-deep .el-checkbox__input.is-checked .el-checkbox__inner,.checkbox-group ::v-deep .el-checkbox__input.is-indeterminate .el-checkbox__inner{background-color:$primary-color;border-color:$primary-color;}
 </style>
